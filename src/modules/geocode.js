@@ -10,7 +10,7 @@ class Geocode {
     addCoordinates() {
         let sheet = 'Página1';
         let listAddress = [];
-        this.workbook.xlsx.readFile(this.file).then(data => {
+        await this.workbook.xlsx.readFile(this.file).then(data => {
             let x = data.getWorksheet(sheet);
             x.eachRow((data, pos) => {
                 let address = data.values[2];
