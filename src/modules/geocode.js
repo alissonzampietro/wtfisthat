@@ -1,10 +1,11 @@
-const api = require('./map_api/map_quest');
+const map = require('./MapApi/MapQuest');
 const Excel = require('exceljs');
 
 class Geocode {
     constructor() {
         this.workbook = new Excel.Workbook();
         this.file = './src/modules/storage/geocode.xlsx';
+        this.api = new map();
     }
 
     async addCoordinates() {
@@ -18,8 +19,11 @@ class Geocode {
                 let city = data.values[5];
         
                 if(pos !== 1 && address) {
-                    let obj = {'address': address, 'postalcode': postalCode, 'city': city};
-                    listAddress.push(obj);
+                    this.api.getCoordinates(address, city, postalCode).then(data => {
+                        let obj = {'address': address, 'postalcode': postalCode, 'city': city, 'coordinates': data};
+                        listAddress.push(obj);
+                    })
+                    
                 } 
             });
         })
