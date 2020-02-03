@@ -7,7 +7,7 @@ class Geocode {
         this.file = './src/modules/storage/geocode.xlsx';
     }
 
-    addCoordinates() {
+    async addCoordinates() {
         let sheet = 'Página1';
         let listAddress = [];
         await this.workbook.xlsx.readFile(this.file).then(data => {
@@ -22,9 +22,8 @@ class Geocode {
                     listAddress.push(obj);
                 } 
             });
-            return listAddress;
         })
-        
+        return listAddress
     }
 }
 
