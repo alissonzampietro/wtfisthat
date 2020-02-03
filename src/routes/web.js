@@ -1,8 +1,11 @@
 const Geocode = require('../modules/Geocode');
 
 module.exports = (app) => {
-    app.get('/geocode', (req, res) => {
+    app.get('/geocode/addCoordinates', (req, res) => {
         let geocode = new Geocode();
-        res.json(geocode.run());
+        geocode.addCoordinates().then(data => {
+            console.log(data)
+        })
+        // res.json();
     })
 }

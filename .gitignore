@@ -1,3 +1,4 @@
 storage/
 .env
+bootstrap.js
 node_modules/
