@@ -4,6 +4,7 @@ module.exports = (app) => {
     app.get('/geocode/addCoordinates', (req, res) => {
         let geocode = new Geocode();
         geocode.addCoordinates().then(data => {
+            console.log('web.js: ', data);
             res.json(data);
         });
     })
